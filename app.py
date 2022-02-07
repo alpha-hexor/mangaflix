@@ -79,12 +79,12 @@ def download_manga(path,final_link):
     
     #tqdm progress bar to download images
 
-    # for i in tqdm(image_links):
-    #     r=requests.get(i,headers=download_header)
-    #     src = r.content
-    #     with open(path+"/"+i.split('/')[-1],"wb") as f:
-    #         f.write(src)
-    #     f.close()
+    for i in tqdm(image_links):
+        r=requests.get(i,headers=download_header)
+        src = r.content
+        with open(path+"/"+i.split('/')[-1],"wb") as f:
+            f.write(src)
+        f.close()
 
     #list all the jpgs in the directory in sorted order
     ext = ".jpg"
