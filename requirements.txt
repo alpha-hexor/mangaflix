@@ -1,0 +1,5 @@
+beautifulsoup4
+img2pdf
+requests
+rich
+termcolor
