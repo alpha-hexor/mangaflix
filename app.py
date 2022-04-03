@@ -96,7 +96,7 @@ def download_manga(path,final_link):
     ext = ".jpg"
     jpgs = []
     for i in range(1,len(image_links)+1):
-        jpgs.append(str(i)+ext)
+        jpgs.append(str(i)+'-o'+ext)
 
    
     #create pdf
@@ -106,8 +106,7 @@ def download_manga(path,final_link):
     with open(name, "wb") as f:
         f.write(img2pdf.convert([i for i in jpgs]))
     f.close()
-    colored_print("[*]Done")
-    os.system("start "+name)
+    colored_print("[*]Pdf Created")
 
 #function to create a download log
 def download_log(path,name,chapter):
