@@ -87,24 +87,32 @@ def download_manga(path,final_link):
     for i in track(range(len(image_links)),description='[green]Downloading...'):
         r=requests.get(image_links[i],headers=download_header)
         src = r.content
-        with open(path+"/"+image_links[i].split('/')[-1],"wb") as f:
+        with open(path+"/"+image_links[i].split('/')[-1].split("-")[0]+".jpg","wb") as f:
             f.write(src)
         f.close()
  
 
     #list all the jpgs in the directory in sorted order
     ext = ".jpg"
-    jpgs = []
-    for i in range(1,len(image_links)+1):
-        jpgs.append(str(i)+'-o'+ext)
+    # jpgs = []
+    # for i in range(1,len(image_links)+1):
+    #     jpgs.append(str(i)+'-o'+ext)
+
+    # print(jpgs)
+    os.chdir(path)
+    partial_jpgs=sorted((int(i.replace(".jpg","")) for i in os.listdir() if i.endswith(".jpg")))
 
    
+    jpgs = [str(partial_jpgs[i])+ext for i in range(len(partial_jpgs))]
+
+    
+    
     #create pdf
     colored_print("[*]Creating PDF")
-    os.chdir(path)
+    
     name = path.split('/')[-1] + ".pdf"
     with open(name, "wb") as f:
-        f.write(img2pdf.convert([i for i in jpgs]))
+        f.write(img2pdf.convert(jpgs))
     f.close()
     colored_print("[*]Pdf Created")
 
