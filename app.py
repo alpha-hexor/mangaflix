@@ -178,10 +178,6 @@ def main():
         #take manga chapter number
         x= input("Enter the chapter number: ")
 
-        if int(x) < int(first) or int(x) > int(last):
-            colored_print("[!]Invalid chapter number")
-            exit()
-
         final_link = manga_to_download + "/" + "chapter-"+x
         n = manga_names[s-1]
 
